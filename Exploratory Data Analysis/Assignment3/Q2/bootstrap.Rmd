@@ -1,0 +1,408 @@
+---
+title: "R programming and bootstrapping"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+geometry: margin=.75in
+graphics: yes
+header-includes:
+- \usepackage{graphicx}
+- \usepackage{color}
+- \newcommand{\pop}[1]{\mathcal{#1}}
+- \newcommand{\samp}[1]{\mathcal{#1}}
+fontsize: 9pt
+classoption: letter
+---
+
+```{r, setup, echo=FALSE}
+library(knitr)
+# Any of these options can be changed in any R chunk.
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center", 
+                      # Two following determine width and height
+                      # of the R device on which the plots are made
+                      fig.width = 7, 
+                      fig.height = 6,
+                      # last argument here determines the actual 
+                      # width of the plot as it appears in the processed
+                      # RMarkdown file
+                      out.width = "50%") 
+
+dataDirectory <- "../Data"
+```
+
+**50 marks**
+
+In this question, you will write a couple of simple `S3` methods and then use them to get a *bootstrap sample* of any attribute values using the `Map()` function.  You will also be writing a `bootstrap()` function in two different ways: first using `Map()` then using `sapply()`. 
+
+The data set `cars` will be used to illustrate the differences and for statistical intepretation of the bootstrap distribution.
+
+
+a. **(4 marks)** One minor annoyance with `R` is that there is not a single function that will retrieve the number of population units for any data representation. For example, the data frame `cars` has `r nrow(cars)` units, as does each of its variables `cars$dist` and `car$speed$.  A simple list `ll <- list(a = "apple", b = "banana", c = "cucumber")` has three units (presumably from a population of types of fruit).
+  
+   i. *(2 marks)* To get around this problem,  write an `S3` generic function called `n_units()` that will return the correct number of units.  You need complete the following definition for the generic function
+   
+      ```{r, eval = FALSE}
+      n_units <- function(x) {}
+      ```
+      as well as methods specialized for each of `data.frame` and `matrix`.  
+      
+      The default method you write should work for the rest.
+```{r, eval = TRUE}
+n_units <- function(x){
+  UseMethod("n_units", x)
+}
+n_units.default <- function(x){
+  length(x)
+}
+n_units.data.frame <- function(x){
+  dim(x)[1]
+}
+n_units.matrix <- function(x){
+  ncol(x)*nrow(x)
+}
+```
+    
+   ii. *(2 marks)* Show the results of the following uses of your function:
+      Cars: Dataframe
+      cars$speed: double
+      HairEyeColor: double
+      lm(dist ~ speed, data = cars): List  (intercept, speed)
+```{r, eval = TRUE}
+       n_units(cars)    
+       n_units(cars$speed) 
+       n_units(HairEyeColor)
+       n_units(lm(dist ~ speed, data = cars))
+       n_units(n_units)
+```
+      
+
+b. **(5 marks)** Similarly, when it comes to extracting the values for specified units, there is no single convenient function to do the job. Which function you use depends on whether you are extracting values from a vector, a data frame, or a matrix.  
+  
+   i. *(3 marks)* To get around this problem,  write an `S3` generic function called `getValues()` that will return the values of `x` specified by `indices`.  You need complete the following generic function definition
+   
+      ```{r, eval = FALSE}
+      getValues <- function(x, indices) { ... }
+      ```
+      as well as write methods specialized for each of `data.frame` and `matrix`,  and `list`.  
+      
+      The default method should work for anything else.
+      
+      For matrices and data frames the values returned should preserve that structure.
+```{r, eval = TRUE}
+matrix1 <- matrix(c(3, 9, -1, 4, 2, 6), nrow = 2)
+getValues <- function(x, indices) {
+  UseMethod("getValues", x)
+}
+getValues.default <- function(x, indices){
+  x[indices]
+}
+getValues.list <- function(x, indices){
+  x[[indices]]
+}
+getValues.data.frame <- function(x, indices){
+  x[indices,]
+}
+getValues.matrix <- function(x, indices){
+  x[indices,]
+}
+```
+    
+   ii. *(2 marks)* Show the results of the following uses of your function:
+   
+```{r, eval = TRUE}
+       getValues(mtcars, c("Pontiac Firebird"))
+       getValues(data.frame(alphabet = LETTERS), 1:3)
+       getValues(HairEyeColor, 1:3)
+       getValues(lm(dist ~ speed, data = cars), 1)
+```
+
+c. **(7 marks)** Functions that return functions.   
+
+    Imagine a function `fit(formula, data, ...)` that (somehow) fits a model
+    given by `formula` to the data contained in `data`. 
+       
+    Examples of potential functions `fit()` include
+    
+    - `lm(formula, data  = data, ...)`
+    - `glm(formula, data = data, ...)`
+    - `loess(formula, data = data, ...)`
+    
+    Of course, the variables in the `formula` would have to be present in `data`.
+    
+    What we want here is a wrapper function that will take the `fit` function and the `formula` as arguments (plus any other arguments `fit` might use) and will return a function which takes only `data` as an argument but will calculate the `fit` on `data` using the `formula` and any other arguments `...` passed on to `fit`.
+    
+    i. *(3 marks)* Create the function `gitFitFn()` as described above.
+       
+       Show your code.
+    
+```{r, eval = TRUE}
+    getFitFn <- function(fit, formula, ...){
+      myFunc = function(data){
+        fit(formula, data = data,...)
+      }
+      return(myFunc)
+    }
+```
+    ii. *(2 marks)* Test your function `gitFitFn()` by getting `result1` and `result2` as above and evaluating
+    
+        Show your code 
+        
+        (including construction of `myFit()` as well as of `result1` and `result2`.)
+        
+```{r, eval = TRUE}
+myFit <- getFitFn(fit = lm, formula = dist ~ speed)
+result1 <- myFit(data = cars)
+result2 <- lm(dist ~ speed, data = cars)
+coef(result1) == coef(result2)
+```
+    iii. *(2 marks)* Now you will test that your function works with additional arguments for `fit`.
+    
+         Repeat the above test except now pass the additional argument  `model = FALSE`, first to  `getFitFn()` in the creation of `myFit()` and then to `lm()` in the creation of `result2`.
+    
+         Reconstruct both `result1` and `result2` with `model = FALSE`.
+         
+         Test the equality of the coefficients from each result.
+         
+         Show your code.
+        
+```{r, eval = TRUE}
+myFit <- getFitFn(fit = lm, formula = dist ~ speed, model = FALSE)
+result1 <- myFit(data = cars)
+result2 <- lm(dist ~ speed, data = cars, model = FALSE)
+coef(result1) == coef(result2)
+```
+
+d. **(8 marks)** **A bootstrap distribution.**  
+
+   For any sample $\samp{S}$ of size $n$ selected from some population $\pop{P}$ (using simple random sampling), the *sampling distribution* of any attribute $a(\samp{S})$ is used to make inferences about $a(\pop{P})$.  Unfortunately, we typically do not know that distribution.
+   
+   However, we might estimate it by mimicking the sampling plan using the observed sample $\samp{S}$ in place of the unavailable population $\pop{P}$.  That is, samples $\samp{S}^*_1, \samp{S}^*_2, \ldots, \samp{S}^*_B$ of size $n$ are randomly selected (this time **with** replacement) from $\samp{S}$ in place of $\pop{P}$.  There will be $n^n$ possible samples but typically only $B << n^n$ bootstrap samples $\samp{S}^*_i$ are selected at random.
+   
+   The *bootstrap distribution* of $a(\samp{S})$ is then estimated by the collection of values $a(\samp{S}^*_1), a(\samp{S}^*_2), \ldots, a(\samp{S}^*_B)$. 
+   
+   In this question you will write and use a function that creates this estimated bootstrap distribution.
+   
+   i. *(5 marks)*  Implement the following function using the `Map()` function as well as any of the functions from earlier parts of this question which you might need.
+   
+      ```{r, eval = FALSE}
+      bootstrap <- function(data, attribute, B = 1000) { ... }
+      ```
+      
+      Here 
+      
+      - `data` is the data set containing the sample $\samp{S}$ and the values on
+         all variates of interest,
+         
+      - `attribute` is a function that calulates the attribute value when
+        called on `data` (or a bootstrap sample from `data` of the same size), 
+        and  
+      
+      - `B` is the number of bootstrap samples to be used in estimating 
+        the bootstrap distribution.
+        
+       `bootstrap` **returns** the result of the `Map()` call as the collection values of the attribute evaluated on each of the $B$ bootstrap samples 
+        $a(\samp{S}^*_1), a(\samp{S}^*_2), \ldots, a(\samp{S}^*_B)$.
+        
+        Show your code.
+
+      ```{r, eval = TRUE}
+      bootstrap <- function(data, attribute, B = 1000) {
+        bootSamp <- lapply(1:B,
+                          FUN = function(p){
+                            samp_index <- sample(1:n_units(data), n_units(data), replace = TRUE)
+                            samp_vals <- getValues(data, samp_index)
+                          })
+        Map(attribute, bootSamp)
+      }
+      ```
+   
+   ii. *(3 marks)*  Test your bootstrap function by getting the following data:
+       ```{r, eval = FALSE}
+       set.seed(314159)
+       bSamples <- bootstrap(cars$speed, mean)
+       ```
+       
+       And drawing a histogram of the resulting values.
+       
+       Make sure the histogram has a meaningful title and labels.
+       
+       Show your code.
+
+      ```{r, eval = TRUE}
+      set.seed(314159)
+      bSamples <- bootstrap(cars$speed, mean)
+      hist(unlist(bSamples),xlab = "Bootstrap sample mean", main = "Histogram of Bootstrap Sample")
+      ```
+
+e. **(6 marks)**  Use the functions you constructed above to estimate the bootstrap distribution the quadratic coefficient estimator when fitting the stopping distance as a quadratic function of the car's speed to the data set `cars`.
+
+    Use `B = 5000` and draw a histogram of the estimated bootstrap distribution of the slope estimator.  
+    
+    Make sure the histogram has meaningful labels, title, and legend.
+
+    Show all your code.  **AGAIN** `set.seed(31459)` **before** calling `bootstrap()`.
+    
+    What do you conclude about the contribution of the quadratic term from this histogram?
+
+```{r, eval = TRUE}
+set.seed(314159)
+quad_fit <- getFitFn(fit = lm, formula = dist ~ poly(speed,2))
+bsamples <- bootstrap(cars, quad_fit, B = 5000)
+#hist(unlist(bsamples))
+quad_list <- rep(NA, 5000)
+for (i in 1:5000){
+  quad_list[i]<-bsamples[[i]]$coefficients[[3]]
+}
+hist(quad_list, breaks = 25, main = "histogram of the quad term", xlab = "quadratic term value")
+```
+  
+f. **(10 marks)**  The `bootstrap()` function defined earlier always returned a list.  However in plotting, data.frames or numeric vectors are generally preferred.
+
+   Consider again the bootstrap distribution for the coefficients fitting a  model of `dist` as a quadratic function of `speed`.  Here the difference between `Map()` and `sapply()` is investigated in the context of implementing the `bootstrap()` function. 
+
+   i. *(1 mark)*  Using the `bootstrap()` function (implemented previously using `Map()`) get a bootstrap sample of all three coefficients produced by the fit.
+   
+      In this case,
+      
+      - `set.seed(314159)` again
+      - use `B = 50`
+      - assign the result to `bsamples <- bootstrap(...)`
+      - show the coefficients for the first bootstrap sample generated
+      
+      Show your code.
+      
+```{r, eval = TRUE}
+bootstrap <- function(data, attribute, B = 50) {
+  bootSamp <- lapply(1:B,
+                     FUN = function(p){
+                       samp_index <- sample(1:n_units(data), n_units(data), replace = TRUE)
+                       samp_vals <- getValues(data, samp_index)
+                     })
+  Map(attribute, bootSamp)
+}
+set.seed(314159)
+quad_fit <- getFitFn(fit = lm, formula = dist ~ poly(speed,2))
+bSamples <- bootstrap(cars, quad_fit, B = 50)
+bSamples[[1]]
+```
+   ii. *(3 marks)*  Ideally,  `bSamples` from part (i) would be a `data.frame` with three variables, instead of a list of vectors, each of length 3.  Perhaps if `sapply()` were used in place of `Map()` in `bootstrap()`, a simpler structure for `bSamples` might come out.
+   
+       Rewrite your bootstrap function so that it uses (and returns the result of) `sapply()` instead of `Map()`.
+       
+       Use this rewritten `bootstrap()` function to recreate `bSamples` as in
+       part (i).  (Again, `set.seed(314159)` first and use `B = 50`.)
+       
+       - What is the class of `bSamples` now?
+       
+       - Show the coefficient estimates from the first bootstrap sample.
+       
+       Show your code.
+       
+      Answer:   The class of bSamples is matrix, array now
+```{r, eval = TRUE}
+bootstrap <- function(data, attribute, B = 50) {
+  bootSamp <- lapply(1:B,
+                     FUN = function(p){
+                       samp_index <- sample(1:n_units(data), n_units(data), replace = TRUE)
+                       samp_vals <- getValues(data, samp_index)
+                     })
+  sapply(bootSamp, attribute)
+}
+set.seed(314159)
+quad_fit <- getFitFn(fit = lm, formula = dist ~ poly(speed,2))
+bSamples <- bootstrap(cars, quad_fit, B = 50)
+class(bSamples)
+bSamples[[1]]
+```
+      
+   iii. *(6  marks)*  Instead of returning only the coefficients, define an attribute that is the whole fit.
+        Using the `bootstrap()` function of part (ii), generate the bootstrap sample of **fits** (Again, `set.seed(314159)` first and use `B = 50`.) 
+        
+        - Explain why `bSamples` is a `matrix`?
+        
+          bSamples is a matrix in this case is because that we change from Map to sapply, and sapply will return a matrix
+        
+        - What class is a row of `bSamples`?
+        
+          Class of row of 'bSamples' is list
+          
+        - What class is a column of `bSamples`?
+        
+          Class of column of 'bSamples' is list
+        
+        - Show **3 distinctly different** ways to extract the coefficients of the fit from the first bootstrap sample.
+        
+        Show your code.
+
+```{r, eval = TRUE}
+set.seed(314159)
+fit <- getFitFn(fit = lm, formula = dist ~ poly(speed,2))
+bSamples <- bootstrap(cars, fit, B = 50)
+bSamples[,1]
+# 3 different ways to extract coef
+bSamples[,1]$coefficients
+bSamples[,1][[1]]
+bSamples[[1]]
+```
+h. **(10 marks)**  In this question, the `bootstrap()` function implemented using `sapply()` is to be used throughout.
+
+   i. *(2 marks)* Construct a bootstrap sample, called `bSamples`, containing **only** the coefficient estimates from fitting `dist` as a quadratic model of `speed`.
+   
+      - use `set.seed(314159)` and `B = 500`.
+      
+      - show the coefficients from the **last** bootstrap sample.
+      
+      Show your code.
+
+```{r, eval = TRUE}
+set.seed(314159)
+quad_fit <- getFitFn(fit = lm, formula = dist ~ poly(speed,2))
+bSamples <- bootstrap(cars, quad_fit, B = 500)
+bSamples[1,][[500]]
+```
+      
+
+   ii. *(5 marks)* Draw a scatterplot of the coefficient estimates (excluding the intercept estimate) from all 500 bootstrap samples.
+   
+       - give appropriate title and axis labels
+       
+       - have `x` be the coefficient estimate of the linear term; `y`, the coefficient of the quadratic term.
+       
+       - use `pch = 19` and a colour with alpha level 0.4
+       
+       - use `{r, out.width = "80%"}` as the header to the R chunk
+       
+       - add contours of equal density to the plot. 
+         
+         Note for this 
+         
+         - you will need the `kde2d()` function from the `MASS` package.
+         
+         - use bandwidth function `width.SJ()` for both `x` and `y`.
+         
+           (See examples at end of `?kde2d`,)
+         
+       
+       Show your code.
+```{r, out.width = "80%"}
+library(MASS)
+listofCoef <- bSamples[1,]
+x <- rep(NA, 500)
+y <- rep(NA, 500)
+for (i in 1:500){
+  x[i] <- listofCoef[[i]][2] #Get linear term coef
+  y[i] <- listofCoef[[i]][3] #Get quadratic term coef
+}
+plot(x,y,type="n", xlab = "linear coef", ylab = "quad coef", main = "Scatterplot of coef estimates")
+points(x,y,pch = 19, col = adjustcolor(densCols(x,y),0.4))
+f1 <- kde2d(x, y,h = c(width.SJ(x), width.SJ(y)))
+contour(f1, add = TRUE)
+```
+
+   iii. *(3 marks)* Of the two coefficients (linear and quadratic), which does the bootstrap distribution suggest may not be needed?  Explain your reasoning.
+  
+  By looking at the scatterplot and the density, the quadratic coefficients does not suggest neither linear coef nor quad coef is not needed. Because when looking at the higher density parts, both quad and linear coef are not 0. However, if we must pick one coef that is not needed, I would pick the quad coef, because some of the points in the 500 bootstrap samples has 0 as the quad coef, this means that quadratic is not used in that particular sample. 

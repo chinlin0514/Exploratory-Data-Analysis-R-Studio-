@@ -1,0 +1,20 @@
+
+ORIGINAL RESEARCH ARTICLE
+
+Front. Psychol., 01 August 2011 | https://doi.org/10.3389/fpsyg.2011.00178
+Gender differences in personality across the ten aspects of the Big Five
+
+Yanna J. Weisberg1, Colin G. DeYoung2* and Jacob B. Hirsh3
+1 Department of Psychology, Linfield College, McMinnville, OR, USA
+2 Department of Psychology, University of Minnesota, Minneapolis, MN, USA
+3 University of Toronto, Toronto, ON, Canada
+
+Materials and Methods
+
+Participants
+
+Participants (N = 2643; 892 male, 1751 female) were drawn from a number of research projects, for which they received either monetary compensation or university course credit. Much of the data was collected in a large Canadian metropolitan area, either as an online survey or as a part of laboratory studies (N = 1826; 537 male, 1289 female). Some participants (N = 481; 200 male, 281 female) were members of the Eugene-Springfield community sample (ESCS). Lastly, 336 participants were recruited via Amazon’s Mechanical Turk (MTurk; 155 male, 181 female) and completed the measures online. Participants ranged in age from 17 to 85 (M = 27.2, SD = 14.4). The majority of participants identified as White (39.9%) or Asian (27.5%), with 1% or less identifying as Native American, Hispanic, and Black. Twenty-five percent of participants identified as “other,” and 5% did not specify ethnicity. The demographic data for a number of our samples allowed participants to choose from only the above five ethnicity classifications or specify their ethnicity as “other.” Therefore, the classification of “Asian” contains individuals of both South-Asian and East-Asian ethnic backgrounds. Though South-Asian and East-Asian cultures are markedly different in many ways, both are more collectivist than Western cultures (Suh et al., 1998) and therefore provide an interesting contrast to the White/European ethnic background.
+
+Personality Measures
+
+The Big Five aspect scales (BFAS) were designed specifically to assess the 10 aspects of the Big Five identified by DeYoung et al. (2007). Items were selected from the IPIP based on their correlation with the aspect factor scores and maintaining balanced keying. Items were chosen that differentiated the factor in question from all nine other aspect factors, by selecting items only if they were correlated with the aspect factor in question with a correlation at least 0.10 greater than the correlation with any other factor. This procedure has the consequence that the same items remain the best markers of each factor even when scores are residualized. Thus, the residualized scores retain the meaning of the construct in question. Ten items are used to assess each of the 10 aspects. Participants rate their agreement with how well each statement describes them using a five-point scale ranging from strongly disagree to strongly agree. Scores for each aspect are computed by taking the mean of the corresponding items. Scores for each domain are computed by taking the mean of the two aspect scores. The scales are all highly reliable (all α > 0.73) and have good test–retest reliability, all r > 0.72 (DeYoung et al., 2007). Internal consistencies for the present data are shown in Table 1.

@@ -1,0 +1,126 @@
+---
+title:  "Personality traits"
+output:
+  pdf_document:
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+  html_document:
+    toc: yes
+  word_document: default
+fontsize: 9pt
+urlcolor: blue
+header-includes:
+- \usepackage{graphicx}
+- \usepackage{color}
+- \usepackage{hyperref}
+- \usepackage{epic}
+- \usepackage{multimedia}
+- \newcommand{\subspace}[1]{\mathcal{#1}}    
+- \newcommand{\field}[1]{\mathbb{#1}}
+- \newcommand{\Reals}{\field{R}}
+- \newcommand{\Integers}{\field{Z}} 
+- \newcommand{\Naturals}{\field{N}}
+- \newcommand{\Complex}{\field{C}}
+- \newcommand{\Rationals}{\field{Q}}
+- \newcommand{\widebar}[1]{\overline{#1}}
+- \newcommand{\wig}[1]{\tilde{#1}}
+- \newcommand{\bigwig}[1]{\widetilde{#1}}
+- \newcommand{\pop}[1]{\mathcal{#1}}
+- \newcommand{\samp}[1]{\mathcal{#1}}
+- \newcommand{\given}{~\vline~}
+- \newcommand{\indep}{\bot\hspace{-.6em}\bot}
+- \newcommand{\notindep}{\bot\hspace{-.6em}\bot\hspace{-0.75em}/\hspace{.4em}}
+- \newcommand{\depend}{\Join}
+- \newcommand{\notdepend}{\Join\hspace{-0.9 em}/\hspace{.4em}}
+- \newcommand{\imply}{\Longrightarrow}
+- \newcommand{\notimply}{\Longrightarrow \hspace{-1.5em}/ \hspace{0.8em}}
+- \DeclareMathOperator*{\argmin}{arg\,min}
+- \DeclareMathOperator*{\argmax}{arg\,max}
+- \DeclareMathOperator*{\Ave}{Ave\,}
+- \newcommand{\abs}[1]{\lvert {#1} \rvert} 
+- \newcommand{\code}[1]{\texttt{#1}}
+- \newcommand*{\R}{\textsf{R}}
+- \newcommand*{\RStudio}{\textsf{RStudio}}
+- \newcommand*{\RMarkdown}{\textsf{RMarkdown}}
+- \newcommand*{\loon}{\textsf{loon}}
+- \newcommand*{\Loon}{\textsf{Loon}}
+- \newcommand*{\Grid}{\textsf{Grid}}
+- \newcommand*{\Python}{\textsf{Python}}
+- \newcommand*{\Tcl}{\textsf{Tcl}}
+- \newcommand{\pkg}[1]{\textsf{#1}}
+- \newcommand{\ve}[1]{\mathbf{#1}}         
+- \newcommand{\sv}[1]{\boldsymbol{#1}}   
+- \newcommand{\m}[1]{\mathbf{#1}}      
+- \newcommand{\sm}[1]{\boldsymbol{#1}}  
+- \newcommand{\tr}[1]{{#1}^{\mkern-1.5mu\mathsf{T}}}
+- \newcommand{\norm}[1]{||{#1}||}
+- \newcommand{\inverse}[1]{{#1}^{-1}}
+- \newcommand*{\mvec}{\operatorname{vec}}
+- \newcommand*{\trace}{\operatorname{trace}}
+- \newcommand*{\rank}{\operatorname{rank}}
+- \newcommand*{\diag}{\operatorname{diag}}
+- \newcommand*{\vspan}{\operatorname{span}}
+- \newcommand*{\rowsp}{\operatorname{rowsp}}
+- \newcommand*{\colsp}{\operatorname{colsp}}
+- \newcommand*{\svd}{\operatorname{svd}}
+- \newcommand{\degrees}{$^{\circ}$}
+- \newcommand{\permpause}{\pause}
+- \newcommand{\togglepause}{}
+- \newcommand{\suchthat}{~:~}
+- \newcommand{\st}{~:~} 
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, 
+               warning = FALSE,
+               message = FALSE,
+               fig.align = "center", 
+               fig.width = 6, 
+               fig.height = 5,
+               out.height = "40%")
+set.seed(12314159)
+# Number of characters width in printing.
+options(width = 72)
+
+```
+
+
+
+---
+
+**18 marks**
+
+In this question, you are going to consider a study published in *Frontiers in Psychology* from 2011.
+
+To quote from the paper:
+
+>"Men and women have obviously different biological roles when it comes to propagation of the species, but how much they differ psychologically is a more controversial question, one that requires empirical research to answer adequately. Whether the underlying causes of psychological gender differences are evolutionary or socio-cultural, understanding how men and women differ in the ways in which they think, feel, and behave can shed light on the human condition.
+>
+"The study of personality is particularly useful in attempting to examine psychological differences between genders. Personality is often conceptualized as the extent to which someone displays high or low levels of specific traits. Traits are the consistent patterns of thoughts, feelings, motives, and behaviors that a person exhibits across situations (Fleeson and Gallagher, 2009). That is, someone who scores high on a trait will exhibit psychological states related to that trait more often and to a greater extent than individuals who score low on that trait.
+>
+"Gender differences in personality traits are often characterized in terms of which gender has higher scores on that trait, on average. For example, women are often found to be more agreeable than men (Feingold, 1994; Costa et al., 2001). This means that women, on average, are more nurturing, tender-minded, and altruistic more often and to a greater extent than men. However, such a finding does not preclude the fact that men may also experience nurturing, tender-minded, and altruistic states, and that some men may even score higher in these traits than some women. The goal of investigating gender differences in personality, therefore, is to elucidate the differences among general patterns of behavior in men and women on average, with the understanding that both men and women can experience states across the full range of most traits. Gender differences in terms of mean differences do not imply that men and women only experience states on opposing ends of the trait spectrum; on the contrary, significant differences can exist along with a high degree of overlap between the distributions of men and women (Hyde, 2005)."
+
+The entire paper can be found at [https://doi.org/10.3389/fpsyg.2011.00178](https://doi.org/10.3389/fpsyg.2011.00178) and the results and brief description can be found in the three files
+
+- `males.csv`
+- `females.csv` and
+- `source.txt`
+
+Based on the information provided, answer the following questions:
+
+a. *(2 marks)* What **target population** do you think the authors have in mind? 
+    - I think the target population is men and women in general.
+b. *(3 marks)* What is the **study population**?
+    - The study population is the participants from a number of research projects
+c. *(3 marks)* What is the **sample**?
+    - The sample is the 2643 people (892 males and 1751 females) from large Canadian metropolitan area, ESCS, and MTurk
+d. *(3 marks)* What population attributes are being considered in the data provided here?
+    - Mean and standard deviation are being considered.
+e. *(3 marks)* Why might there be **study error** and should it be a major concern or not?  Explain.
+    - I think there might be study error because the study population is men and women in general while the study population we have is the participants from a number of research projects. It could be a major concern because in the people of research projects actually represents only a small portion of the men and women in general and could be really different than the target population.
+f. *(3 marks)* Why might there be **sample error** and should it be a major concern or not?  Explain.
+    - There might be sample error because in the sample and it should be a major concern. It is because of in the sample collected, there are around twice amount of females than males. Also, the races is not evenly distributed and majority of the sample is white or Asian. Therefore, the sample error is due to both gender and race. 
+g. *(1 mark)*  Can you conclude anything about the sampling plan? If so, what?  If not, why not?
+    - I think the sampling plan in this case is self-selected.

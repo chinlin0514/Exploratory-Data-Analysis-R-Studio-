@@ -1,0 +1,301 @@
+"City","Treatment","Recovery"
+"Mexico City","B",99.6
+"San Paulo","C",95.3
+"Dar es Salaam","A",97.8
+"Melbourne","C",99
+"Surat","B",99.7
+"Bangalore","B",99.5
+"Suzhou","C",98.6
+"Cairo","B",95.8
+"London","B",96.2
+"Beijing","A",97.1
+"Kabul","A",97.1
+"Kolkata","C",95
+"Phoenix","C",95.3
+"Luanda","A",96.6
+"Medellin","C",98.9
+"Philadelphia","C",99
+"Istanbul","C",95.1
+"Barcelona","B",96.4
+"Chennai","C",95.4
+"Ho Chi Minh City","B",96.3
+"Toronto","B",99.9
+"Guadalajara","B",95.9
+"Kolkata","A",96.9
+"Sydney","A",96.8
+"Bangalore","A",97.2
+"Kunming","B",99.3
+"Atlanta","B",95.8
+"Kunming","A",97.2
+"Ahmadabad","A",97.6
+"Kitakyushu","B",96
+"Philadelphia","A",97.2
+"Ho Chi Minh City","C",98.6
+"Delhi","B",99.8
+"Shanghai","B",99.5
+"Jakarta","C",98.6
+"Dhaka","B",95.8
+"Fortaleza","B",96.3
+"Atlanta","A",97.8
+"Pune","C",95.6
+"Singapore","B",96.1
+"Luanda","B",96.1
+"Baghdad","C",99.1
+"Mexico City","A",97.8
+"Nagoya","B",99.3
+"Dallas-Fort Worth","A",97.1
+"Brazilia","B",99.4
+"Abidjan","C",98.5
+"Chengdu","A",97.1
+"Belo Horizonte","C",95.2
+"Lagos","A",96.8
+"Santiago","B",96.2
+"New York","A",98.1
+"Suzhou","A",97.7
+"Shenyang","B",99.5
+"Bogota","C",95.2
+"Ahmadabad","C",98.5
+"Guadalajara","A",98.2
+"Kuala Lumpu","A",97.2
+"Nagoya","C",98.7
+"Boston","A",97.9
+"Shantou","A",97.6
+"Alexandria","A",96.6
+"Johannesburg","B",100
+"Karachi","C",99
+"Hyderabad","B",96.2
+"Hangzhou","A",96.7
+"Madrid","A",98.1
+"Alexandria","C",98.9
+"Tianjin","A",97
+"Montreal","C",99
+"Lima","B",96.2
+"Quingdao","A",97.3
+"Miami","C",95.4
+"Brazilia","C",95.5
+"Rio de Janeiro","A",97.6
+"Kinshasa","B",95.9
+"Zhengzhou","C",98.8
+"Guadalajara","C",95.6
+"Buenos Aires","B",96.2
+"Seoul-Incheon","B",95.9
+"Xiamen","B",96.1
+"Abidjan","A",97.2
+"Bogota","B",96.3
+"Moscow","B",96
+"Dar es Salaam","C",95.3
+"Ankara","B",99.6
+"Sydney","C",98.7
+"Wuhan","C",98.5
+"Toronto","A",97.3
+"Nairobi","C",99.1
+"Los Angeles","C",98.7
+"Kabul","C",98.6
+"Monterrey","A",97.3
+"Buenos Aires","C",99
+"Rio de Janeiro","B",99.8
+"Nanjing","A",96.6
+"Boston","C",98.5
+"Johannesburg","C",98.9
+"Quingdao","B",96.2
+"Jeddah","B",96
+"Boston","B",96
+"Bogota","A",98.2
+"San Paulo","A",97.1
+"Kabul","B",96.1
+"Ahmadabad","B",96.1
+"Jakarta","A",96.7
+"Fortaleza","A",97.3
+"Pune","B",95.9
+"Seoul-Incheon","A",97.6
+"Singapore","C",98.5
+"Mexico City","C",98.4
+"Delhi","A",97.9
+"Lima","C",99
+"Chicago","C",98.5
+"Karachi","A",97.9
+"Nairobi","A",97.3
+"Zhengzhou","B",99.9
+"Manila","A",97
+"Chennai","B",96.2
+"New York","B",96
+"Montreal","A",97.1
+"Shenyang","C",98.8
+"Bangkok","B",95.9
+"Hyderabad","C",98.7
+"Chongquin","B",99.8
+"Dallas-Fort Worth","B",96.4
+"St. Petersburg","A",96.9
+"Lima","A",96.8
+"Chongquin","C",98.9
+"Tianjin","B",96.1
+"Melbourne","B",99.6
+"Yangon","B",95.8
+"Shenzhen","C",95.3
+"Osaka-Kobe-Kyoto","B",96.4
+"Miami","B",96.1
+"Beijing","C",98.8
+"Seoul-Incheon","C",98.7
+"Manila","B",96.2
+"Medellin","A",97
+"Chicago","B",96.1
+"Monterrey","B",96.1
+"Riyadh","B",99.4
+"Osaka-Kobe-Kyoto","A",97
+"Miami","A",97.1
+"Xian","C",95.3
+"Riyadh","A",97.3
+"Mumbai","C",98.4
+"Buenos Aires","A",96.9
+"Harbin","B",99.7
+"Tokyo-Yokohama","B",99.4
+"Hangzhou","B",99.6
+"Nanjing","B",96.1
+"Monterrey","C",99
+"Hong Kong","B",96.3
+"Barcelona","A",97.1
+"Cairo","A",96.7
+"Los Angeles","B",96.1
+"Paris","A",97.2
+"Houston","B",96.4
+"Surat","A",98
+"Barcelona","C",95
+"Belo Horizonte","B",99.6
+"Chennai","A",97
+"Moscow","C",98.9
+"Washington","A",97.6
+"Xian","A",97
+"Chengdu","B",99.4
+"Ho Chi Minh City","A",96.8
+"Chittagong","B",96.5
+"Shenzhen","B",96.4
+"Manila","C",99.1
+"Kuala Lumpu","B",96.4
+"Montreal","B",96.3
+"Cairo","C",94.9
+"Dhaka","A",97.2
+"Guangzhou-Foshan","A",97.7
+"Shantou","B",96.3
+"Kitakyushu","A",98.2
+"Belo Horizonte","A",96.9
+"Delhi","C",99
+"Ankara","C",98.7
+"Dalian","B",99.9
+"Pune","A",98
+"Dalian","A",98.2
+"Atlanta","C",95.3
+"Jeddah","A",97.3
+"Sydney","B",99.4
+"Surat","C",95.5
+"Nanjing","C",98.6
+"London","C",98.7
+"Chongquin","A",97.3
+"Houston","A",97.3
+"Dhaka","C",98.9
+"Tokyo-Yokohama","C",98.6
+"Harbin","C",98.4
+"Washington","B",99.8
+"Chittagong","A",98.2
+"Alexandria","B",96.2
+"Xiamen","A",97.4
+"Madrid","C",98.5
+"Dongguan","C",98.9
+"Kunming","C",99
+"San Paulo","B",95.8
+"Washington","C",98.8
+"Lahore","B",99.5
+"Phoenix","B",96.3
+"Shanghai","A",97.1
+"Paris","B",96.4
+"Lahore","C",99
+"Dongguan","B",95.9
+"Madrid","B",100
+"Foshan","A",97
+"Moscow","A",97.2
+"Kolkata","B",96.4
+"Ji'nan","A",97.2
+"Hangzhou","C",98.6
+"Guangzhou-Foshan","B",96.2
+"Brazilia","A",96.9
+"Tehran","C",94.9
+"London","A",96.7
+"Baghdad","B",99.9
+"Hong Kong","A",97.3
+"Istanbul","A",96.7
+"Nagoya","A",97.6
+"Nairobi","B",99.5
+"Harbin","A",97.6
+"New York","C",98.8
+"Kinshasa","C",95.4
+"Phoenix","A",97.3
+"Jakarta","B",96.3
+"Bangkok","A",98.2
+"Santiago","C",98.7
+"Paris","C",98.9
+"Lagos","C",95.5
+"Jeddah","C",99.1
+"St. Petersburg","C",98.4
+"Melbourne","A",98.2
+"Lahore","A",97.7
+"Johannesburg","A",98.1
+"Lagos","B",96.2
+"Hong Kong","C",95.5
+"Guangzhou-Foshan","C",95
+"Tianjin","C",95.1
+"Medellin","B",96.2
+"Los Angeles","A",97.8
+"Rio de Janeiro","C",98.6
+"Wuhan","A",96.6
+"Kitakyushu","C",95.6
+"Shenyang","A",97.6
+"Chittagong","C",95
+"Ankara","A",97.7
+"Xiamen","C",95.1
+"Luanda","C",98.5
+"Shanghai","C",99
+"Toronto","C",98.7
+"Santiago","A",96.9
+"Chengdu","C",98.6
+"Kinshasa","A",96.7
+"Foshan","C",98.5
+"Yangon","C",98.5
+"Yangon","A",96.9
+"Chicago","A",97.1
+"Dar es Salaam","B",99.3
+"Fortaleza","C",98.5
+"Dallas-Fort Worth","C",99
+"Baghdad","A",96.9
+"Houston","C",98.9
+"St. Petersburg","B",96.4
+"Xian","B",96.2
+"Abidjan","B",96.4
+"Quingdao","C",99
+"Kuala Lumpu","C",95.4
+"Suzhou","B",95.8
+"Khartoum","A",97.6
+"Istanbul","B",95.8
+"Mumbai","A",97.2
+"Osaka-Kobe-Kyoto","C",95.2
+"Singapore","A",97.6
+"Tehran","A",96.7
+"Riyadh","C",98.5
+"Bangalore","C",98.7
+"Beijing","B",96.1
+"Bangkok","C",95
+"Shantou","C",98.5
+"Foshan","B",99.6
+"Dongguan","A",96.9
+"Wuhan","B",96.1
+"Mumbai","B",95.9
+"Karachi","B",99.8
+"Tehran","B",99.9
+"Ji'nan","C",98.9
+"Zhengzhou","A",97.2
+"Hyderabad","A",96.9
+"Khartoum","B",95.8
+"Dalian","C",98.9
+"Shenzhen","A",98.1
+"Philadelphia","B",96.1
+"Khartoum","C",98.8
+"Tokyo-Yokohama","A",97.3
+"Ji'nan","B",99.6
